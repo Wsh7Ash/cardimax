@@ -1,0 +1,15 @@
+user_id
+  risky: yes
+  "user_id" ends with an identity-style suffix; its value set grows with users, requests or objects and is effectively unbounded
+raw_path
+  risky: yes
+  "raw_path" ends with an identity-style suffix; its value set grows with users, requests or objects and is effectively unbounded
+exception_text
+  risky: yes
+  "exception_text" looks free-form; free-text labels are unbounded by construction
+route
+  risky: no
+  "route" is not identity-shaped; risk is determined by the measured distinct value count
+status
+  risky: no
+  "status" is not identity-shaped; risk is determined by the measured distinct value count

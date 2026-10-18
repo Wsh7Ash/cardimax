@@ -1,0 +1,20 @@
+# HELP http_requests_total Requests handled, by route and method.
+# TYPE http_requests_total counter
+http_requests_total{method="GET",route="/orders",status="2xx"} 12043
+http_requests_total{method="GET",route="/orders",status="4xx"} 88
+http_requests_total{method="POST",route="/orders",status="2xx"} 512
+http_requests_total{method="POST",route="/orders",status="5xx"} 3
+http_requests_total{method="GET",route="/health",status="2xx"} 981234
+http_requests_total{method="GET",route="/users",status="2xx"} 8421
+http_requests_total{method="GET",route="/users",status="404"} 42
+# HELP http_request_duration_seconds Request latency.
+# TYPE http_request_duration_seconds histogram
+http_request_duration_seconds_bucket{route="/orders",le="0.05"} 12000
+http_request_duration_seconds_bucket{route="/orders",le="0.25"} 12500
+http_request_duration_seconds_bucket{route="/orders",le="1"} 12550
+http_request_duration_seconds_bucket{route="/orders",le="+Inf"} 12553
+http_request_duration_seconds_sum{route="/orders"} 2431.5
+http_request_duration_seconds_count{route="/orders"} 12553
+# HELP build_info Build metadata.
+# TYPE build_info gauge
+build_info{version="1.4.2",commit="a1b2c3d"} 1

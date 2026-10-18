@@ -1,0 +1,24 @@
+cardimax — 6 metric(s), 14 series observed, verdict: WITHIN BUDGET
+
+METRIC  TYPE  SERIES  LABELS  EST  PROJECTED
+------------------------------------  ---------  ------  ------  ---  ---------
+http_requests_total                   counter    7       3       24   24
+http_request_duration_seconds_bucket  untyped    4       2       4    4
+build_info                            gauge      1       2       1    1
+http_request_duration_seconds         histogram  0       0       1    1
+http_request_duration_seconds_count   untyped    1       1       1    1
+http_request_duration_seconds_sum     untyped    1       1       1    1
+
+label detail
+  http_requests_total{method} : 2 distinct values
+  http_requests_total{route} : 3 distinct values
+  http_requests_total{status} : 4 distinct values
+  http_request_duration_seconds_bucket{le} : 4 distinct values
+  http_request_duration_seconds_bucket{route} : 1 distinct values
+  build_info{commit} : 1 distinct values
+  build_info{version} : 1 distinct values
+  http_request_duration_seconds_count{route} : 1 distinct values
+  http_request_duration_seconds_sum{route} : 1 distinct values
+
+findings: none — every metric is within budget
+

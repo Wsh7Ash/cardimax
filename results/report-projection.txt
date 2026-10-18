@@ -1,0 +1,26 @@
+cardimax — 2 metric(s), 15 series observed, verdict: OVER BUDGET
+projection: adding user_id=50000
+
+METRIC  TYPE  SERIES  LABELS  EST  PROJECTED
+---------------  -------  ------  ------  ---  ---------
+checkout_events  counter  9       3       24   1200000
+queue_depth      gauge    6       1       6    300000
+
+label detail
+  checkout_events{device} : 2 distinct values
+  checkout_events{outcome} : 3 distinct values
+  checkout_events{step} : 4 distinct values
+  queue_depth{queue} : 6 distinct values
+
+findings: 2
+  1. [HIGH] projection-overflow  checkout_events
+     projected 1200000 series after adding labels (> budget 10000)
+     fix: do not add unbounded labels; keep the breakdown in logs
+  2. [HIGH] projection-overflow  queue_depth
+     projected 300000 series after adding labels (> budget 10000)
+     fix: do not add unbounded labels; keep the breakdown in logs
+
+projection detail
+  checkout_events: 24 -> 1200000  (+user_id=50000)  [OVERFLOW]
+  queue_depth: 6 -> 300000  (+user_id=50000)  [OVERFLOW]
+

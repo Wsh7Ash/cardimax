@@ -1,0 +1,23 @@
+[
+  {
+    "metric": {
+      "name": "http_requests_total",
+      "type": "counter",
+      "labels": {
+        "method": 4,
+        "route": 22,
+        "status": 5
+      }
+    }
+  },
+  {
+    "metric": {
+      "name": "db_pool_connections",
+      "type": "gauge",
+      "labels": {
+        "db": 3,
+        "state": 3
+      }
+    }
+  }
+]

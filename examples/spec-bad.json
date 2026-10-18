@@ -1,0 +1,22 @@
+[
+  {
+    "metric": {
+      "name": "checkout_events",
+      "type": "counter",
+      "labels": {
+        "step": 4,
+        "outcome": 3,
+        "device": 2
+      }
+    }
+  },
+  {
+    "metric": {
+      "name": "queue_depth",
+      "type": "gauge",
+      "labels": {
+        "queue": 6
+      }
+    }
+  }
+]

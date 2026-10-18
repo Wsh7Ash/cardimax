@@ -1,0 +1,16 @@
+cardimax — 2 metric(s), 37 series observed, verdict: WITHIN BUDGET
+
+METRIC  TYPE  SERIES  LABELS  EST  PROJECTED
+-------------------  -------  ------  ------  ---  ---------
+http_requests_total  counter  31      3       440  440
+db_pool_connections  gauge    6       2       9    9
+
+label detail
+  http_requests_total{method} : 4 distinct values
+  http_requests_total{route} : 22 distinct values
+  http_requests_total{status} : 5 distinct values
+  db_pool_connections{db} : 3 distinct values
+  db_pool_connections{state} : 3 distinct values
+
+findings: none — every metric is within budget
+

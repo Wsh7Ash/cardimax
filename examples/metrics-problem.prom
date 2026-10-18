@@ -1,0 +1,27 @@
+# HELP http_requests_total Requests handled.
+# TYPE http_requests_total counter
+http_requests_total{method="GET",route="/orders",status="2xx"} 12043
+http_requests_total{method="GET",route="/orders",status="4xx"} 88
+# HELP api_orders_lookup Order lookups, tagged the way the first draft did it.
+# TYPE api_orders_lookup counter
+api_orders_lookup{user_email="alice@example.com",status="ok"} 12
+api_orders_lookup{user_email="bob@example.com",status="ok"} 9
+api_orders_lookup{user_email="carol@example.com",status="error"} 2
+api_orders_lookup{user_email="dave@example.com",status="ok"} 14
+# HELP job_runtime_job_id Background job runs by job identifier.
+# TYPE job_runtime_job_id gauge
+job_runtime_job_id{job_id="7f3a",queue="emails"} 0.42
+job_runtime_job_id{job_id="8b1c",queue="emails"} 1.08
+job_runtime_job_id{job_id="9d2e",queue="exports"} 3.71
+# HELP http_requests_path_raw Raw request paths (first draft, please fix).
+# TYPE http_requests_path_raw counter
+http_requests_path_raw{path="/orders/8f1a-2c3b-4d5e"} 3
+http_requests_path_raw{path="/orders/91b2-3c4d-5e6f"} 4
+http_requests_path_raw{path="/users/4455-aabb"} 1
+http_requests_path_raw{path="/users/6677-ccdd"} 2
+http_requests_path_raw{path="/health"} 50123
+# HELP checkout_debug_events Free-text debug events (temporary instrumentation).
+# TYPE checkout_debug_events counter
+checkout_debug_events{debug_message="coupon applied for cart 8123"} 1
+checkout_debug_events{debug_message="retrying payment provider timeout"} 1
+checkout_debug_events{debug_message="inventory check slow 1.4s"} 1

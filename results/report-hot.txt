@@ -1,0 +1,22 @@
+cardimax — 1 metric(s), 1200 series observed, verdict: OVER BUDGET
+
+METRIC  TYPE  SERIES  LABELS  EST  PROJECTED
+---------------------------------  -------  ------  ------  ----  ---------
+synthetic_request_latency_seconds  summary  1200    3       1200  1200
+
+label detail
+  synthetic_request_latency_seconds{path} : 20 distinct values  <- identity-shaped
+  synthetic_request_latency_seconds{quantile} : 1 distinct values
+  synthetic_request_latency_seconds{user_id} : 60 distinct values  <- identity-shaped
+
+findings: 3
+  1. [MEDIUM] risky-label-name  synthetic_request_latency_seconds{path}
+     label "path" is identity-shaped (20 distinct values observed)
+     fix: replace with a normalized route template (e.g. /orders/{id}) and keep the raw value in logs
+  2. [MEDIUM] risky-label-name  synthetic_request_latency_seconds{user_id}
+     label "user_id" is identity-shaped (60 distinct values observed)
+     fix: drop the label from the metric; derive per-user breakdowns from logs or exemplars
+  3. [HIGH] metric-overflow  synthetic_request_latency_seconds
+     metric has 1200 series (> budget 500)
+     fix: drop or bucket high-cardinality labels; consider recording-series alternatives
+

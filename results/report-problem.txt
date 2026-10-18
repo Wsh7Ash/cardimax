@@ -1,0 +1,35 @@
+cardimax — 5 metric(s), 17 series observed, verdict: OVER BUDGET
+
+METRIC  TYPE  SERIES  LABELS  EST  PROJECTED
+----------------------  -------  ------  ------  ---  ---------
+api_orders_lookup       counter  4       2       8    8
+job_runtime_job_id      gauge    3       2       6    6
+http_requests_path_raw  counter  5       1       5    5
+checkout_debug_events   counter  3       1       3    3
+http_requests_total     counter  2       3       2    2
+
+label detail
+  api_orders_lookup{status} : 2 distinct values
+  api_orders_lookup{user_email} : 4 distinct values  <- identity-shaped
+  job_runtime_job_id{job_id} : 3 distinct values  <- identity-shaped
+  job_runtime_job_id{queue} : 2 distinct values
+  http_requests_path_raw{path} : 5 distinct values  <- UNBOUNDED
+  checkout_debug_events{debug_message} : 3 distinct values  <- identity-shaped
+  http_requests_total{method} : 1 distinct values
+  http_requests_total{route} : 1 distinct values
+  http_requests_total{status} : 2 distinct values
+
+findings: 4
+  1. [MEDIUM] risky-label-name  api_orders_lookup{user_email}
+     label "user_email" is identity-shaped (4 distinct values observed)
+     fix: drop the label from the metric; derive per-user breakdowns from logs or exemplars
+  2. [MEDIUM] risky-label-name  job_runtime_job_id{job_id}
+     label "job_id" is identity-shaped (3 distinct values observed)
+     fix: allowlist the value set, bucket it, or move it to logs
+  3. [HIGH] unbounded-label  http_requests_path_raw{path}
+     label "path" has 5 distinct values (> 4)
+     fix: replace with a normalized route template (e.g. /orders/{id}) and keep the raw value in logs
+  4. [MEDIUM] risky-label-name  checkout_debug_events{debug_message}
+     label "debug_message" is identity-shaped (3 distinct values observed)
+     fix: allowlist the value set, bucket it, or move it to logs
+

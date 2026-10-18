@@ -1,0 +1,14 @@
+# Build output
+cardimax
+cardimax-bin
+cardimax.exe
+*.test
+*.out
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+
+# local scratch
+/results/*.prom.tmp
