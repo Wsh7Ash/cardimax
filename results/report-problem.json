@@ -99,6 +99,14 @@
   "total_series": 17,
   "findings": [
     {
+      "severity": "high",
+      "kind": "unbounded-label",
+      "metric": "http_requests_path_raw",
+      "label": "path",
+      "detail": "label \"path\" has 5 distinct values (\u003e 4)",
+      "remediation": "replace with a normalized route template (e.g. /orders/{id}) and keep the raw value in logs"
+    },
+    {
       "severity": "medium",
       "kind": "risky-label-name",
       "metric": "checkout_debug_events",
@@ -121,14 +129,6 @@
       "label": "job_id",
       "detail": "label \"job_id\" is identity-shaped (3 distinct values observed)",
       "remediation": "allowlist the value set, bucket it, or move it to logs"
-    },
-    {
-      "severity": "high",
-      "kind": "unbounded-label",
-      "metric": "http_requests_path_raw",
-      "label": "path",
-      "detail": "label \"path\" has 5 distinct values (\u003e 4)",
-      "remediation": "replace with a normalized route template (e.g. /orders/{id}) and keep the raw value in logs"
     }
   ],
   "verdict": "OVER BUDGET",
